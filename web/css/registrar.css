@@ -1,0 +1,24 @@
+body{
+	margin: 0;
+	padding: 0;
+	background: rgb(49, 184, 201);
+	padding-top: 20px;
+	
+}
+
+
+.container{
+	background-color: rgb(230, 230, 230);
+	border-radius: 8px;
+}
+
+
+#registrar{
+		display: inline-block;
+	
+	margin: 20px;
+	width: 200px;
+	float: center;
+}
+
+

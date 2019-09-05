@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{myfavoriteSession.permission()}"/>
+        </f:metadata>
+        <title>Veterinario MyFavoriteVet</title>           
+    </h:head>
+
+    <ui:composition template="../templates/diseño.xhtml"> 
+        <ui:param name="titulo" value="Veterinario" />
+        <ui:param name="nombreUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} #{myfavoriteSession.usuLogin.USUApellido}" />
+        <ui:param name="nombresUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} "/>
+
+        <ui:define name="navSide">
+            <div class="profile clearfix">
+                <div class="profile_pic">
+                    <img src="../img/user.png" alt="..." class="img-circle profile_img"></img>
+                </div>
+                <div class="profile_info">
+                    <span>Hola,</span>
+                    <h2>#{nombresUsuario}</h2>
+                </div>
+            </div>
+            <!-- /Aqui termina la foto del navSide-->
+            <br/>           
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" >
+                <div class="menu_section" >               
+                    <ul class="nav side-menu" >
+
+                        <li><a><i class="fa fa-users"></i> Roles <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <c:forEach items="#{myfavoriteSession.usuLogin.rolCollection}" var="roles">
+                                    <li>
+                                        <li><a href="../#{roles.ROLNombreRol}/index.xhtml?faces-redirect=true">#{roles.ROLNombreRol}</a></li>
+
+                                    </li>
+                                </c:forEach>                                
+                            </ul>
+                        </li> 
+                        <br></br>
+
+                        <li><a href="index.xhtml" ><i class="fa fa-home"></i>Inicio <span></span></a></li>
+
+                        <li><a><i class="fa fa-user"></i> Perfil <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <!--                                        <li><a href="miperfil.xhtml">Ver perfil</a></li>-->
+                                <li><a href="../Veterinario/editarperfil.xhtml">Editar Perfil</a></li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-medkit"></i> Citas <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="../Veterinario/crearcita.xhtml">Crear citas</a></li>
+                                <li><a href="../Veterinario/citascreadas.xhtml">Citas de hoy</a></li>
+                                <li><a href="../Veterinario/citasRechazadas.xhtml">Agendar citas rechazadas</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a><i class="fa fa-history"></i> Historia clinica <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="../Veterinario/crearhistoriaclinica.xhtml">Nueva historia clinica</a></li>
+                                <li><a href="../Veterinario/historiasclinicas.xhtml">Historias clinicas creadas</a></li>
+                            </ul>
+                        </li>
+
+                        <!--                                <li><a><i class="fa fa-history"></i> Recetas medicas <span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="../Veterinario/crearReceta.xhtml">Crear nueva receta</a></li>
+                                                            </ul>
+                                                        </li>-->
+
+                        <li><a><i class="fa fa-history"></i> Medicamentos <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="../Veterinario/registrarMedicamento.xhtml">Registrar medicamento</a></li>
+                                <li><a href="../Veterinario/verMedicamentos.xhtml">Ver medicamentos</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a><i class="fa fa-paw"></i>Mascotas <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="../Veterinario/consultarMascotas.xhtml"> Mascotas</a></li>
+                            </ul>
+                        </li>
+                        <!--                                <li><a><i class="fa fa-clone"></i> Disponibilidad <span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="../Veterinario/creardisponibilidad.xhtml">Crear disponibilidad</a></li>
+                                                            </ul>
+                                                        </li>-->
+                    </ul>
+
+                    <!--Aqui va el footer-->
+
+                    <!--Aqui termina el footer-->
+
+                </div>
+            </div>
+            <!--aqui termina el slider bar menu-->
+
+        </ui:define>
+
+        <ui:define name="contenido" >
+            <br></br>
+            <br></br> <br></br>
+
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h2>Editar Perfil <small>My favorite vet</small></h2>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="">
+
+
+                            <div class="clearfix"></div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <form>
+
+                                        <fieldset disabled="">
+                                            <div class="form-group">
+                                                <label for="disabledTextInput">Nombre</label>
+                                                <input type="text" id="nombre" class="form-control" value="#{myfavoriteSession.usuLogin.USUNombre}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="disabledTextInput">Apellido</label>
+                                                <input type="text" id="apellido" class="form-control" value="#{myfavoriteSession.usuLogin.USUApellido}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="disabledTextInput">Fecha de nacimiento</label>
+                                                <h:inputText id="nacimiento" class="form-control" value="#{myfavoriteSession.usuLogin.USUFechaNacimiento}">
+                                                    <f:convertDateTime  pattern="MM/dd/yyyy" dateStyle="short"  />
+                                                </h:inputText>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="disabledTextInput">Sexo</label>
+                                                <input type="text" id="sexo" class="form-control" value="#{myfavoriteSession.usuLogin.USUSexo}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="disabledTextInput">Tipo de documento</label>
+                                                <input type="text" id="tipoD" class="form-control" value="#{myfavoriteSession.usuLogin.USUTipoDocumento}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="disabledTextInput">Numero de documento</label>
+                                                <input type="text" id="numeroD" class="form-control" value="#{myfavoriteSession.usuLogin.USUNumeroDocumento}"/>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h:form>
+                                        <div class="form-group has-feedback">
+                                            <label for="exampleFormControlInput1" style="color: #000000">E-mail:</label>
+
+                                            <h:inputText  class="form-control"  value="#{myfavoriteSession.usuLogin.USUEmail}"></h:inputText>
+                                            <span class="fa fa-envelope form-control-feedback right" aria-hidden="true"></span>
+                                        </div>
+                                        <br></br>   
+                                        <div class="form-group has-feedback">
+                                            <label for="exampleFormControlInput1" style="color: #000000">Direccion:</label>
+                                            <h:inputText class="form-control"  value="#{myfavoriteSession.usuLogin.USUDireccion}"></h:inputText>
+                                            <span class="fa fa-compass form-control-feedback right" aria-hidden="true"></span>
+                                        </div>
+                                        <br></br>   
+
+                                        <div class="form-group has-feedback">
+                                            <label for="exampleFormControlInput1" style="color: #000000">Telefono:</label>
+                                            <h:inputText class="form-control"  value="#{myfavoriteSession.usuLogin.USUTelefono}"></h:inputText> 
+                                            <span class="fa fa-phone-square form-control-feedback right" aria-hidden="true"></span><span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                                        </div>
+                                        <br></br>   
+                                        <br></br>  
+
+                                        <h:commandButton class="btn btn-primary" action="#{myfavoriteSession.editarPerfil()}" value="Guardar cambios"></h:commandButton>
+                                    </h:form>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+            
+
+        </ui:define>
+    </ui:composition>
+
+</html>
+

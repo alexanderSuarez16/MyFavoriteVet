@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:head>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{myfavoriteSession.permission()}"/>
+        </f:metadata>
+
+        <link rel="shortcut icon" href="../img/verde.png"></link> 
+    </h:head>
+    <h:body>
+        <ui:composition template="../templates/diseño.xhtml">
+            <ui:param name="titulo" value="Empleado" />
+            <ui:param name="nombreUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} #{myfavoriteSession.usuLogin.USUApellido}" />
+            <ui:param name="nombresUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} "/>
+
+            <ui:define name="navSide">
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="../img/user.png" alt="..." class="img-circle profile_img"></img>
+                    </div>
+                    <div class="profile_info">
+                        <span>Hola,</span>
+                        <h2>#{nombresUsuario}</h2>
+                    </div>
+                </div>
+                <!-- /Aqui termina la foto del navSide-->
+                <br/>
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+                        <div class="clearfix"></div>
+                        <br></br>
+                        <br></br>
+
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section" >               
+                                <ul class="nav side-menu" >
+                                    <li><a><i class="fa fa-user"></i> Perfil <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+
+                                            <c:forEach items="#{myfavoriteSession.usuLogin.rolCollection}" var="roles">
+                                                <li>
+                                                    <li><a href="../#{roles.ROLNombreRol}/index.xhtml?faces-redirect=true">#{roles.ROLNombreRol}</a></li>
+
+                                                </li>
+                                            </c:forEach>                                
+                                        </ul>
+                                    </li> 
+                                    <li><a href="index.xhtml" ><i class="fa fa-home"></i>Inicio <span></span></a></li>
+
+                                    <li><a><i class="fa fa-user"></i> Perfil <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <!--                                        <li><a href="miperfil.xhtml">Ver perfil</a></li>-->
+                                            <li><a href="editarperfil.xhtml">Editar Perfil</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-medkit"></i> Servicios <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="agendarservicio.xhtml">Servicios solicitados</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-file-text"></i> Historial de servicios <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="servicios-agendados.xhtml">Servicios agendados</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a><i class="fa fa-paw"></i>Mascotas <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="consultarMascotas.xhtml"> Mascotas</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+
+
+                            </div>
+                        </div>
+                        <!--aqui termina el slider bar menu-->
+                    </div>
+                </div>
+            </ui:define>
+
+            <ui:define name="contenido">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Citas para servicios </h2>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <p class="text-muted font-13 m-b-30">
+                            </p>
+                            
+                                <h:form id="form-ci">
+                                    <table class="table table-striped table-bordered table-responsive" id="datatable-buttons">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Numero de cita</th>
+                                                <th scope="col">Usuario que pide el servicio</th>
+                                                <th scope="col">Para la mascota</th>
+                                                <th scope="col">Servicio pedido</th>
+                                                <th scope="col">Agendar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <ui:repeat value="#{serviciosView.mostrarCita()}" var="item">
+                                                <tr>
+
+                                                    <td>#{item.PKCISCitaservicio}</td>
+                                                    <td>#{item.FKUSUIdUsuario.USUNombre}</td>
+                                                    <td>#{item.FKMASIdMascota.MASNombreMascota}</td>
+                                                    <td>#{item.FKSERIdServicio.SERNombreServicio}</td>                            
+                                                    <td>  
+                                                        
+                                                        <h:commandButton class="btn btn-success" pt:data-toggle="modal" pt:data-target="#exampleModal"   value="Agendar">                                                            
+                                                            <f:ajax event="click" listener="#{serviciosView.setCitaTemporal(item)}" render=":formAgendar:agendamiento" immediate="true" execute="@form"></f:ajax>
+                                                        </h:commandButton>                           
+                                                    </td>
+                                                </tr>
+
+
+                                            </ui:repeat>
+
+                                        </tbody>
+                                    </table>
+                                </h:form>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Agendar</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h:form class="form-horizontal form-label-left" id="formAgendar" prependId="false">
+                                    <h:panelGroup id="agendamiento">
+                                        <fieldset disabled="">
+                                            <div class="form-group">
+                                                <h:outputLabel value="Id: *" for="Id" class="control-label col-md-3 col-sm-3 col-xs-12" />
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input  id="Id" type="number"  jsf:value="#{serviciosView.citaTemporal.PKCISCitaservicio}" title="Id" class="form-control">                                                          
+
+                                                    </input> 
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <div class="form-group">
+                                            <h:outputLabel value="Fecha: *" for="Fecha" class="control-label col-md-3 col-sm-3 col-xs-12" />
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input  id="Fecha" type="date"  jsf:value="#{serviciosView.citaTemporal.CISFecha}" title="Fecha" required="true" class="form-control">                                                          
+                                                    <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="America/Bogota" />
+                                                </input> 
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputLabel value="Hora: *" for="Hora" class="control-label col-md-3 col-sm-3 col-xs-12" />
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input  id="Hora" type="time"  jsf:value="#{serviciosView.citaTemporal.CISHora}" title="Hora"  required="true" class="form-control">                                                          
+                                                    <f:convertDateTime type="time" pattern="HH:mm" timeZone="America/Bogota" />
+                                                </input> 
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">                                       
+                                            <button  jsf:action="#{serviciosView.agendarServicio()}" class="btn btn-success" value="Agendar" >Agendar</button>
+
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        </div> 
+                                    </h:panelGroup>                                                                        
+                                </h:form>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

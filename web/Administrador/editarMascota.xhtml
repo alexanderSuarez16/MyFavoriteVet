@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{myfavoriteSession.permission()}"/>
+        </f:metadata>
+        <title>Administrador MyFavoriteVet</title>           
+    </h:head>
+
+    <ui:composition template="../templates/diseño.xhtml"> 
+        <ui:param name="titulo" value="Administrador" />
+        <ui:param name="nombreUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} #{myfavoriteSession.usuLogin.USUApellido}" />
+        <ui:param name="nombresUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} "/>
+
+        <ui:define name="navSide">
+            <div class="profile clearfix">
+                <div class="profile_pic">
+                    <img src="../img/user.png" alt="..." class="img-circle profile_img"></img>
+                </div>
+                <div class="profile_info">
+                    <span>Hola,</span>
+                    <h2>#{nombresUsuario}</h2>
+                </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br/>
+
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                <div class="menu_section">
+
+                    <ul class="nav side-menu">
+
+                        <li><a><i class="fa fa-user"></i> Perfil <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <c:forEach items="#{myfavoriteSession.usuLogin.rolCollection}" var="roles">
+                                    <li>
+                                        <li><a href="../#{roles.ROLNombreRol}/index.xhtml?faces-redirect=true">#{roles.ROLNombreRol}</a></li>
+
+                                    </li>
+                                </c:forEach>                                
+                            </ul>
+                        </li> 
+                        <li><a href="index.xhtml"><i class="fa fa-home"></i> Inicio</a>                                        
+                        </li>
+                        <li><a><i class="fa fa-users" aria-hidden="true"></i> Editar perfil <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <li><a href="editarperfil.xhtml">Editar</a></li>
+
+                            </ul>                                        
+                        </li>
+                        <li><a><i class="fa fa-users" aria-hidden="true"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <li><a href="registrarUsuario.xhtml">Registrar Usuarios</a></li>
+                                <li><a href="consultarUsuarios.xhtml">Consultar Usuarios</a></li>
+                                <li><a href="editarUsuario.xhtml">Editar Usuarios</a></li>
+
+                            </ul>                                        
+                        </li>
+                        <li><a><i class="fa fa-paw" aria-hidden="true"></i> Mascotas <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="registrarMascota.xhtml">Registrar Mascota</a></li>
+                                <li><a href="consultarMascotas.xhtml">Consultar Mascota</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-table"></i> Datos graficos <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="progresoVeterinaria.xhtml">Ver progreso</a></li>                                          
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-book"></i>Cargar Documentos <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="verDocumentos.xhtml" target ="Principal" >Cargar el documento</a ></li>
+                            </ul>
+                        </li>
+                         <li><a><i class="fa fa-envelope-o"></i> Correos Masivos <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="CorreosMasivos.xhtml" target ="Principal" >Generar correos masivos</a ></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </ui:define>
+
+        <ui:define name="contenido">
+
+            <!--////////////////////////////////////////-->
+
+            <f:view>
+
+
+                <h:form id="demo-form2" class="form-horizontal form-label-left">
+                    <h1><h:outputText value="Registro de Mascotas"/></h1>
+
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <h:panelGrid columns="2">
+
+
+                        <h:outputLabel value="¿La Mascota es Beneficiaria?:" for="MASMascotaBeneficiaria" />
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:inputText id="MASMascotaBeneficiaria" value="#{myFavoriteVetAdminView.mascotaIn.MASMascotaBeneficiaria}" title="MASMascotaBeneficiaria" required="true" requiredMessage="The MASMascotaBeneficiaria field is required."/>
+                        </div>
+
+                        <h:outputLabel value="Nombre Mascota:" for="MASNombreMascota" />
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:inputText id="MASNombreMascota" value="#{myFavoriteVetAdminView.mascotaIn.MASNombreMascota}" title="MASNombreMascota" required="true" requiredMessage="The MASNombreMascota field is required."/>
+                        </div>
+
+                        <h:outputLabel value="Sexo Mascota:" for="MASSexoMascota" />
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:inputText id="MASSexoMascota" value="#{myFavoriteVetAdminView.mascotaIn.MASSexoMascota}" title="MASSexoMascota" required="true" requiredMessage="The MASSexoMascota field is required."/>
+                        </div>
+
+                        <h:outputLabel value="Raza Mascota:" for="MASRazaMascota" />
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:inputText id="MASRazaMascota" value="#{myFavoriteVetAdminView.mascotaIn.MASRazaMascota}" title="MASRazaMascota" required="true" requiredMessage="The MASRazaMascota field is required."/>
+                        </div>
+
+                        <h:outputLabel value="Peso Mascota:" for="MASPesoMascota" />
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:inputText id="MASPesoMascota" value="#{myFavoriteVetAdminView.mascotaIn.MASPesoMascota}" title="MASPesoMascota" required="true" requiredMessage="The MASPesoMascota field is required."/>
+                        </div>
+
+                        <h:outputLabel value="Estatura Mascota:" for="MASEstaturaMascota" />
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:inputText id="MASEstaturaMascota" value="#{myFavoriteVetAdminView.mascotaIn.MASEstaturaMascota}" title="MASEstaturaMascota" required="true" requiredMessage="The MASEstaturaMascota field is required."/>
+                        </div>
+
+                    </h:panelGrid>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <h:commandButton  action="#{myFavoriteVetAdminView.registrarMascota()}" class="btn btn-success" value="Registrar" ></h:commandButton>
+                </h:form>
+            </f:view>
+
+
+
+
+
+            <!--////////////////////////////////-->
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>
+

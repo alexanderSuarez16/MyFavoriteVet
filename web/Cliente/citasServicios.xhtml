@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Mis citas</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../templates/diseño.xhtml">
+            <ui:param name="titulo" value="Cliente" />
+            <ui:param name="nombreUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} #{myfavoriteSession.usuLogin.USUApellido}" />
+            <ui:param name="nombresUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} "/>
+
+            <ui:define name="navSide">
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="../img/user.png" alt="..." class="img-circle profile_img"></img>
+                    </div>
+                    <div class="profile_info">
+                        <span>Hola,</span>
+                        <h2>#{nombresUsuario}</h2>
+                    </div>
+                </div>
+
+
+                <br/>
+
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+
+                        <ul class="nav side-menu">
+                            <li><a><i class="fa fa-user"></i> Perfil <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+
+                                    <c:forEach items="#{myfavoriteSession.usuLogin.rolCollection}" var="roles">
+                                        <li>
+                                            <li><a href="../#{roles.ROLNombreRol}/index.xhtml?faces-redirect=true">#{roles.ROLNombreRol}</a></li>
+
+                                        </li>
+                                    </c:forEach>                                
+                                </ul>
+                            </li> 
+                            <li><a href="index.xhtml"><i class="fa fa-home"></i> Inicio</a>                                        
+                            </li>
+                            <li><a><i class="fa fa-users" aria-hidden="true"></i> Editar perfil <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+
+                                    <li><a href="editarPerfil.xhtml">Editar</a></li>
+
+                                </ul>                                        
+                            </li>
+
+                            <li><a><i class="fa fa-table" aria-hidden="true"></i> Citas <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="citas.xhtml">Medicas</a></li>
+                                    <li><a href="citasServicios.xhtml">De servicios</a></li>
+                                </ul>                                 
+                            </li>
+
+                            <li>
+
+                                <a href="servicios.xhtml"><i class="fa fa-book"></i>Servicios</a>
+
+                            </li>
+                            <li>
+
+                                <a href="veterinariosDisponibles.xhtml"><i class="fa fa-book"></i>Veterinarios Disponibles</a>
+
+                            </li>
+
+                            <li>
+
+                                <a href="mascotas.xhtml"><i class="fa fa-paw" aria-hidden="true"></i> Mis mascotas</a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </ui:define>
+
+            <ui:define name="contenido">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2> Servicios de hoy </h2>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <p class="text-muted font-13 m-b-30">
+                                Estos son los servicios que solicitaste a los cuales debes asistir hoy
+                            </p>
+
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Mascota</th>
+                                        <th scope="col">Tipo servicio</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Hora</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="#{myfavoriteSession.misServicios()}" var="citasSer">
+                                        <tr>
+                                            <td>#{citasSer.FKMASIdMascota.MASNombreMascota}</td>
+                                            <td>#{citasSer.FKSERIdServicio.SERNombreServicio}</td>
+                                            <td>
+                                                <h:outputText value="#{citasSer.CISFecha}">
+                                                    <f:convertDateTime  timeZone="America/Bogota" pattern="MM/dd/yyyy" dateStyle="short"  />
+                                                </h:outputText>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="#{citasSer.CISHora}">
+                                                    <f:convertDateTime  timeZone="America/Bogota" pattern="HH:mm" dateStyle="short"  />
+                                                </h:outputText>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+

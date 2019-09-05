@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="82ce70af-c3a3-4f7f-bde6-4b17475f6ccf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="RolesIn" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM tbl_usuario INNER JOIN tbl_usuariorol ON tbl_usuario.PK_USU_Id_Usuario = tbl_usuariorol.FK_USU_Id_Usuario INNER JOIN tbl_rol ON tbl_rol.PK_ROL_Id_Rol = tbl_usuariorol.FK_ROL_Id_Rol WHERE tbl_rol.ROL_Nombre_Rol = $P{RolesIn}]]>
+	</queryString>
+	<field name="PK_USU_Id_Usuario" class="java.lang.Integer">
+		<fieldDescription><![CDATA[En este campo se especifica el identificador del usuario]]></fieldDescription>
+	</field>
+	<field name="USU_Nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[En este campo se especifica el nombre del usuario]]></fieldDescription>
+	</field>
+	<field name="USU_Apellido" class="java.lang.String">
+		<fieldDescription><![CDATA[En este campo se especifica el apellido del usuario]]></fieldDescription>
+	</field>
+	<field name="USU_Direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[En este campo se especifica la dirección del usuario]]></fieldDescription>
+	</field>
+	<field name="USU_Email" class="java.lang.String">
+		<fieldDescription><![CDATA[En este campo se especifica la direccion de correo del usuario]]></fieldDescription>
+	</field>
+	<field name="USU_estado" class="java.lang.String">
+		<fieldDescription><![CDATA[En este campo se especifica si el usuario esta  Activo o Inactivo]]></fieldDescription>
+	</field>
+	<field name="USU_Clave" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="USU_Sexo" class="java.lang.String">
+		<fieldDescription><![CDATA[En este campo se especifica el sexo del usuario]]></fieldDescription>
+	</field>
+	<field name="USU_Fecha_Nacimiento" class="java.sql.Date">
+		<fieldDescription><![CDATA[En este campo se especifica la fecha de nacimiento del usuario]]></fieldDescription>
+	</field>
+	<field name="USU_Tipo_Documento" class="java.lang.String">
+		<fieldDescription><![CDATA[En este campo se especifica el tipo de documento de identificacion del usuario]]></fieldDescription>
+	</field>
+	<field name="USU_Numero_Documento" class="java.lang.Long">
+		<fieldDescription><![CDATA[En este campo se especifica el numero de documento del usuario]]></fieldDescription>
+	</field>
+	<field name="USU_Telefono" class="java.lang.Long">
+		<fieldDescription><![CDATA[En este campo se especifica el numero telefonico del usuario]]></fieldDescription>
+	</field>
+	<field name="FK_USU_Id_Usuario" class="java.lang.Integer">
+		<fieldDescription><![CDATA[En este campo se especifica el identificador del usuario]]></fieldDescription>
+	</field>
+	<field name="FK_ROL_Id_Rol" class="java.lang.Integer">
+		<fieldDescription><![CDATA[En este campo se identifica el identificador del rol]]></fieldDescription>
+	</field>
+	<field name="PK_ROL_Id_Rol" class="java.lang.Integer">
+		<fieldDescription><![CDATA[En este campo se especifica el identificador del rol]]></fieldDescription>
+	</field>
+	<field name="ROL_Nombre_Rol" class="java.lang.String">
+		<fieldDescription><![CDATA[En este campo se especifica el nombre del rol]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#009999" uuid="a0373dff-dcbb-4b32-bb5c-4ac16a4d1def"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="370" height="66" uuid="a5d460ad-c859-4831-899d-0025bf69703a"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Roles Usuarios]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="157" y="66" width="249" height="29" uuid="68094de3-9b7c-4abc-a21f-2648f8f0ea8a"/>
+					<textElement>
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[My Favorite Vet]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#009999" uuid="ea14c170-5dbe-476c-97fe-54a61fb0b14e"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="8c5b275b-acd3-4403-b9c7-9733a44c5709"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<image>
+				<reportElement x="451" y="0" width="104" height="132" uuid="59918327-1a82-4150-b846-f5d336b476d8"/>
+				<imageExpression><![CDATA["C:\\Users\\DIEGO\\Documents\\NetBeansProjects\\favoritevet\\MFV\\web\\img\\verde_1.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="7" width="138" height="18" forecolor="#000000" uuid="fe244140-057d-444e-87fc-bc22749299d6"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="138" y="7" width="138" height="18" forecolor="#000000" uuid="92460abc-56c9-47a3-ba2f-6c3e3a0ed932"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="7" width="138" height="18" forecolor="#000000" uuid="197f862e-7f9e-4240-ab4a-f72f656ebe08"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sexo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="414" y="7" width="138" height="18" forecolor="#000000" uuid="6f500e81-e144-4aa5-a8b1-9d2488eec356"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nombre Rol]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="5df6afd6-1317-44b9-907b-4f1a7c9d6f7b"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="138" height="18" uuid="872d0051-764e-4bc2-b625-f496c8c5f25a"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{USU_Nombre}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="138" y="0" width="138" height="18" uuid="87790684-f15d-4a5f-b48d-53d6d03438d8"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{USU_Apellido}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="276" y="0" width="138" height="18" uuid="324ad8c4-b564-45f5-8d14-c21a90f65ba0"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{USU_Sexo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="414" y="0" width="138" height="18" uuid="b1f10814-262c-43bb-af06-effc4646c757"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ROL_Nombre_Rol}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="2091b903-98ec-48c4-a32e-5c5ee92853d7"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="99c84031-4604-4221-be7f-934a5c024f1d"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="c8939674-61c9-4597-a2ec-1419eabdf056"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="78e29c6f-b3d7-43ff-a65a-433b1b480961"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="a4e07d94-2f95-4d6f-802b-a56a56cbf008"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

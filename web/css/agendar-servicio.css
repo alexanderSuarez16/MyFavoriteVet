@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	
+
+
+}
+
+div {
+	height: 100%;
+	padding-top: 70px;
+	
+
+}
+
+
+table {
+	
+	height: 500px;
+	width: 956px;
+	/*border: 1px solid #000;*/
+	border-collapse: collapse;
+	background-color: #fff;
+	font-family: 'Oswald', sans-serif;
+   
+ 
+
+
+}  
+
+table .usuarios td{
+    background-color: rgb(24, 150, 160); 
+    color :#fff;
+   
+    
+
+    
+} 
+
+.usuarios td:hover{
+
+    background-color: rgb(24, 150, 160); 
+    color: #fff;
+  
+}
+
+
+
+
+
+
+
+
+
+table td {
+	border: 1px solid black;
+	padding: 20px;
+
+}
+
+
+table tr:hover {
+     
+      background-color: rgba(24, 150, 160, 0.5);
+     color: #fff;
+   
+
+   
+}

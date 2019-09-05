@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+        <link rel="shortcut icon" href="../img/verde.png"></link> 
+    </h:head>
+    <h:body>
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right"  >
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="../img/user.png" alt=""></img>#{nombreUsuario}
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">                                       
+
+                                <li>
+                                    <h:form>
+                                        <h:commandLink action="#{myfavoriteSession.cerrarSession()}" value="Cerrar sesion" >
+                                            <i class="fa fa-sign-out pull-right"></i>
+                                        </h:commandLink>
+                                    </h:form>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green">4</span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                    
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="../img/imagen_1.png" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>Jose Carlos</span>
+                                            <span class="time">Justo ahora</span>
+                                        </span>
+                                        <span class="message">
+                                            Jose Carlos hizo una donación de medicamnetos...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="../img/imagen_3_1.png" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>Valeria Rodriguez</span>
+                                            <span class="time">Hace 5 horas</span>
+                                        </span>
+                                        <span class="message">
+                                            Valeria Rodriguez dono varios medicamentos...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="../img/imagen_2_1.png" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>Jean Carlos</span>
+                                            <span class="time">Hace 11 horas</span>
+                                        </span>
+                                        <span class="message">
+                                            Dono medicamentos...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="../img/imagen_3.png" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">Hacen tres dias</span>
+                                        </span>
+                                        <span class="message">
+                                            <h:panelGroup id="panelNotificaiones">
+                                                  Dono #{usuariosSession.contador} medicamentos... 1234
+                                            </h:panelGroup>
+                        
+                                          
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>Cerrar Bandeja de entrada</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                               
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+<!--   AQUI  LINDOS            <h:form>
+                    <p:poll interval="3" update="panelNotificaiones" process=panelNotificaiones" listener="#{usuariosSession.consultaNotificaciones()}"></p:poll>
+                </h:form>-->
+            </div>
+        </div>
+    </h:body>
+</html>
+

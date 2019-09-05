@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{myfavoriteSession.permission()}"/>
+        </f:metadata>      
+    </h:head>
+
+    <ui:composition template="../templates/diseño.xhtml"> 
+        <ui:param name="titulo" value="Usuario" />
+        <ui:param name="nombreUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} #{myfavoriteSession.usuLogin.USUApellido}" />
+
+
+        <ui:define name="navSide">
+            <div class="profile clearfix">
+                <div class="profile_pic">
+                    <img src="../img/user.png" alt="..." class="img-circle profile_img"></img>
+                </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br/>
+
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                <div class="menu_section">
+
+                    <ul class="nav side-menu">
+                        
+
+                        <li><a><i class="fa fa-user"></i> Roles <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <c:forEach items="#{myfavoriteSession.usuLogin.rolCollection}" var="roles">
+                                    <li>
+                                        <li><a href="../#{roles.ROLNombreRol}/index.xhtml?faces-redirect=true">#{roles.ROLNombreRol}</a></li>
+
+                                    </li>
+                                </c:forEach>                                
+                            </ul>
+                        </li>                       
+
+                    </ul>
+                </div>
+            </div>
+        </ui:define>
+
+        <ui:define name="contenido" >
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h1 style="color: #000000">Editar Perfil</h1>
+                </div>
+                <div class="modal-body">
+                    <h:form>
+
+                        <br></br>   
+                        <label for="exampleFormControlInput1" style="color: #000000">E-mail:</label>
+                        <h:inputText class="form-control"    value="#{myfavoriteSession.usuLogin.USUEmail}"></h:inputText>
+                        <br></br>   
+                        <label for="exampleFormControlInput1" style="color: #000000">Direccion:</label>
+                        <h:inputText class="form-control"    value="#{myfavoriteSession.usuLogin.USUDireccion}"></h:inputText>
+                        <br></br>   
+                          
+                        <label for="exampleFormControlInput1" style="color: #000000">Telefono:</label>
+                        <h:inputText class="form-control"    value="#{myfavoriteSession.usuLogin.USUTelefono}"></h:inputText>
+                        <br></br> 
+    <!--            <h:inputFile class="form-control" value=""></h:inputFile>-->
+
+                        <br></br>  
+
+                        <h:commandButton class="btn btn-primary" action="#{myfavoriteSession.editarPerfil()}" value="Guardar cambios"></h:commandButton>
+                    </h:form>
+                    
+                </div>
+
+            </div>
+
+        </ui:define>
+    </ui:composition>
+
+</html>
+

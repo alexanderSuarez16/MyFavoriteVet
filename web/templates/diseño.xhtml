@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head> 
+
+        <!-- Bootstrap -->
+        <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+
+        <link href="../vendors/nprogress/nprogress.css" rel="stylesheet"></link>
+        <!-- iCheck -->
+        <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet"></link>
+
+        <!-- bootstrap-progressbar -->
+        <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"></link>
+        <!-- JQVMap -->
+        <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+        <!-- bootstrap-daterangepicker -->
+        <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"></link>
+
+        <!-- Custom Theme Style -->
+        <link href="../build/css/custom.min.css" rel="stylesheet"></link>
+        <link href="#{facesContext.externalContext.requestContextPath}/templates/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+        <!-- Font Awesome -->
+        <link href="#{facesContext.externalContext.requestContextPath}/templates/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"></link>
+        <!-- NProgress -->
+        <link href="#{facesContext.externalContext.requestContextPath}/templates/vendors/nprogress/nprogress.css" rel="stylesheet"></link>
+        <!-- Custom Theme Style -->
+        <link href="#{facesContext.externalContext.requestContextPath}/templates/build/css/custom.min_1.css" rel="stylesheet"></link>     
+
+        <!--        Aqui van los estilos de formulario-->
+        <link href="#{facesContext.externalContext.requestContextPath}/templates/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"></link>
+        <!-- Font Awesome -->
+        <link href="#{facesContext.externalContext.requestContextPath}/templates/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"></link>
+        <!-- NProgress -->
+        <link href="#{facesContext.externalContext.requestContextPath}/templates/vendors/nprogress/nprogress.css" rel="stylesheet"></link>
+
+        <!-- Custom Theme Style -->
+        <link href="#{facesContext.externalContext.requestContextPath}/templates/build/css/custom.min.css" rel="stylesheet"></link>
+        <!--        Aqui terminan estilos formulario-->
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"/>
+
+        <!--Validar numeros y letras-->
+        <script src="#{facesContext.externalContext.requestContextPath}/resources/js/script-validar-numeros.js"></script>
+
+        <script src="#{facesContext.externalContext.requestContextPath}/resources/js/script-validar-letras.js"></script>
+
+        <!--        Script Validar cita-->
+        <script src="../resources/js/crear-cita.js" type="text/javascript" ></script>
+
+
+        <meta http-equiv="X-UA-Compatible" content="edge, chrome=1" />
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="-1" />
+
+        <link rel="shortcut icon" href="../img/verde.png"></link>
+        
+        <link href="../css/sweetalert.css" rel="stylesheet"/>
+        
+        <link href="../css/helper.css" rel="stylesheet"/>
+        
+        
+        <title>#{titulo}</title>  
+    </h:head>
+
+    <h:body class="nav-md" style="font-family: 'Ubuntu', sans-serif;">
+        <div class="container body" style="background-color: ">
+            <div class="main_container">
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">                     
+                        <ui:include src="navSide.xhtml">
+
+                        </ui:include>                        
+                    </div>
+                </div>
+
+                <!-- top navigation -->
+                <ui:include src="nav.xhtml">
+
+                </ui:include>
+                <!-- /top navigation -->
+
+                <!-- page content -->
+                <ui:include src="contenido.xhtml">
+
+                </ui:include>
+            </div>
+        </div> 
+<script src="../js/lib/sweetalert/sweetalert.min.js"></script>
+        <!-- scripit init-->
+        <script src="../js/lib/sweetalert/sweetalert.init.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- Chart.js -->
+        <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+
+        <!-- bootstrap-progressbar -->
+        <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+
+        <script src="../js/lib/sweetalert/sweetalert.min.js"></script>
+        <!-- scripit init-->
+        
+        <script src="../js/lib/sweetalert/sweetalert.init.js"></script>
+        <!-- Flot -->
+        <script src="../vendors/Flot/jquery.flot.js"></script>
+        <script src="../vendors/Flot/jquery.flot.pie.js"></script>
+        <script src="../vendors/Flot/jquery.flot.time.js"></script>
+        <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+        <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+        <!-- Flot plugins -->
+
+
+
+        <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+
+        <!-- DateJS -->
+        <script src="../vendors/DateJS/build/date.js"></script>
+
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/resources/js/script-validar-numeros.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/resources/js/script-validar-letras.js"></script>
+
+        <!-- Custom Theme Scripts -->
+        <script src="../build/js/custom.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- FastClick -->
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/fastclick/lib/fastclick.js"></script>
+        <!-- NProgress -->
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/nprogress/nprogress.js"></script>
+        <!-- iCheck -->
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/iCheck/icheck.min.js"></script>
+        <!-- Datatables -->
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/jszip/dist/jszip.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/pdfmake/build/pdfmake.min.js"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/vendors/pdfmake/build/vfs_fonts.js"></script>
+        <script src="resources/js/script-validar-letras.js"></script>
+
+        <!-- Custom Theme Scripts -->
+        <script src="#{facesContext.externalContext.requestContextPath}/templates/build/js/custom.min.js"></script>
+
+    </h:body>
+</html>
+

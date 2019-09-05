@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{myfavoriteSession.permission()}"/>
+        </f:metadata>
+        <title>Administrador MyFavoriteVet</title>           
+    </h:head>
+
+    <ui:composition template="../templates/diseño.xhtml"> 
+        <ui:param name="titulo" value="Administrador" />
+        <ui:param name="nombreUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} #{myfavoriteSession.usuLogin.USUApellido}" />
+        <ui:param name="nombresUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} "/>
+
+        <ui:define name="navSide">
+            <div class="profile clearfix">
+                <div class="profile_pic">
+                    <img src="../img/user.png" alt="..." class="img-circle profile_img"></img>
+                </div>
+                <div class="profile_info">
+                    <span>Hola,</span>
+                    <h2>#{nombresUsuario}</h2>
+                </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br/>
+
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                <div class="menu_section">
+
+                    <ul class="nav side-menu">
+                        
+                        <li><a><i class="fa fa-user"></i> Perfil <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+
+                                        <c:forEach items="#{myfavoriteSession.usuLogin.rolCollection}" var="roles">
+                                            <li>
+                                                <li><a href="../#{roles.ROLNombreRol}/index.xhtml?faces-redirect=true">#{roles.ROLNombreRol}</a></li>
+
+                                            </li>
+                                        </c:forEach>                                
+                                    </ul>
+                                </li> 
+                        <li><a href="index.xhtml"><i class="fa fa-home"></i> Inicio</a>                                        
+                        </li>
+                        <li><a><i class="fa fa-users" aria-hidden="true"></i> Editar perfil <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <li><a href="editarperfil.xhtml">Editar</a></li>
+
+                            </ul>                                        
+                        </li>
+                        <li><a><i class="fa fa-users" aria-hidden="true"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <li><a href="registrarUsuario.xhtml">Registrar Usuarios</a></li>
+                                <li><a href="consultarUsuarios.xhtml">Consultar Usuarios</a></li>
+                                <li><a href="editarUsuario.xhtml">Editar Usuarios</a></li>
+
+                            </ul>                                        
+                        </li>
+                        <li><a><i class="fa fa-paw" aria-hidden="true"></i> Mascotas <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="registrarMascota.xhtml">Registrar Mascota</a></li>
+                                <li><a href="consultarMascotas.xhtml">Consultar Mascota</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-table"></i> Datos graficos <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="progresoVeterinaria.xhtml">Ver progreso</a></li>                                          
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-book"></i>Cargar Documentos <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="verDocumentos.xhtml" target ="Principal" >Cargar el documento</a ></li>
+                            </ul>
+                        </li>
+                         <li><a><i class="fa fa-envelope-o"></i> Correos Masivos <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="CorreosMasivos.xhtml" target ="Principal" >Generar correos masivos</a ></li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-file-excel-o"></i> Archivos Excel <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="ArchivosExcel.xhtml" target ="Principal" >Subir archivos Excel</a ></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </ui:define>
+
+        <ui:define name="contenido">  
+
+            <br></br>   
+            <br></br>   
+            <!--        Esta es la session de bienvenida-->
+            <h3 style="color:#000000 ">Bienvenido: #{myfavoriteSession.usuLogin.USUNombre}.</h3>
+
+
+            <br></br>
+            <br></br>
+            <br></br>
+
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h1 style="color: #000000">Mi perfil</h1>
+                </div>
+                <div class="modal-body">
+                    <h:form>
+
+
+                        <fieldset disabled="">
+                            <div class="form-group">
+                                <label for="disabledTextInput">Nombres</label>
+                                <input type="text" id="disabledTextInput" class="form-control" value="#{myfavoriteSession.usuLogin.USUNombre}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="disabledTextInput">Apellidos</label>
+                                <input type="text" id="disabledTextInput" class="form-control" value="#{myfavoriteSession.usuLogin.USUApellido}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="disabledTextInput">Direccion</label>
+                                <input type="text" id="disabledTextInput" class="form-control" value="#{myfavoriteSession.usuLogin.USUDireccion}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="disabledTextInput">E-mail</label>
+                                <input type="text" id="disabledTextInput" class="form-control" value="#{myfavoriteSession.usuLogin.USUEmail}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="disabledTextInput">Fecha de nacimiento</label>
+                                <h:inputText  id="disabledTextInput" class="form-control" value="#{myfavoriteSession.usuLogin.USUFechaNacimiento}">
+                                    <f:convertDateTime  pattern="MM/dd/yyyy" dateStyle="short"  />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group">
+                                <label for="disabledTextInput">Tipo de documento</label>
+                                <input type="text" id="disabledTextInput" class="form-control" value="#{myfavoriteSession.usuLogin.USUTipoDocumento}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="disabledTextInput">Numero de documento</label>
+                                <input type="text" id="disabledTextInput" class="form-control" value="#{myfavoriteSession.usuLogin.USUNumeroDocumento}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="disabledTextInput">Sexo</label>
+                                <input type="text" id="disabledTextInput" class="form-control" value="#{myfavoriteSession.usuLogin.USUSexo}"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="disabledTextInput">Telefono</label>
+                                <input type="text" id="disabledTextInput" class="form-control" value="#{myfavoriteSession.usuLogin.USUTelefono}"/>
+                            </div>
+                        </fieldset>
+
+                    </h:form>
+
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                </div>
+
+            </div>
+
+        </ui:define>
+
+    </ui:composition>
+
+</html>
+

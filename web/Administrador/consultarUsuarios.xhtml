@@ -1,0 +1,354 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{myfavoriteSession.permission()}"/>
+        </f:metadata>
+        <title>Administrador MyFavoriteVet</title>           
+    </h:head>
+
+    <ui:composition template="../templates/diseño.xhtml"> 
+        <ui:param name="titulo" value="Administrador" />
+        <ui:param name="nombreUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} #{myfavoriteSession.usuLogin.USUApellido}" />
+        <ui:param name="nombresUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} "/>
+
+        <ui:define name="navSide">
+            <div class="profile clearfix">
+                <div class="profile_pic">
+                    <img src="../img/user.png" alt="..." class="img-circle profile_img"></img>
+                </div>
+                <div class="profile_info">
+                    <span>Hola,</span>
+                    <h2>#{nombresUsuario}</h2>
+                </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br/>
+
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                <div class="menu_section">
+
+                    <ul class="nav side-menu">
+
+                        <li><a><i class="fa fa-user"></i> Perfil <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <c:forEach items="#{myfavoriteSession.usuLogin.rolCollection}" var="roles">
+                                    <li>
+                                        <li><a href="../#{roles.ROLNombreRol}/index.xhtml?faces-redirect=true">#{roles.ROLNombreRol}</a></li>
+
+                                    </li>
+                                </c:forEach>                                
+                            </ul>
+                        </li> 
+                        <li><a href="index.xhtml"><i class="fa fa-home"></i> Inicio</a>                                        
+                        </li>
+                        <li><a><i class="fa fa-users" aria-hidden="true"></i> Editar perfil <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <li><a href="editarperfil.xhtml">Editar</a></li>
+
+                            </ul>                                        
+                        </li>
+                        <li><a><i class="fa fa-users" aria-hidden="true"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <li><a href="registrarUsuario.xhtml">Registrar Usuarios</a></li>
+                                <li><a href="consultarUsuarios.xhtml">Consultar Usuarios</a></li>
+                                <li><a href="editarUsuario.xhtml">Editar Usuarios</a></li>
+
+                            </ul>                                        
+                        </li>
+                        <li><a><i class="fa fa-paw" aria-hidden="true"></i> Mascotas <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="registrarMascota.xhtml">Registrar Mascota</a></li>
+                                <li><a href="consultarMascotas.xhtml">Consultar Mascota</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-table"></i> Datos graficos <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="progresoVeterinaria.xhtml">Ver progreso</a></li>                                          
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-book"></i>Cargar Documentos <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="verDocumentos.xhtml" target ="Principal" >Cargar el documento</a ></li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-envelope-o"></i> Correos Masivos <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="CorreosMasivos.xhtml" target ="Principal" >Generar correos masivos</a ></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </ui:define>
+
+        <ui:define name="contenido">
+
+
+
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Usuarios </h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <p class="text-muted font-13 m-b-30">
+                        </p>
+
+                        <h:form id="fomularioTabla">
+                            <h:commandLink actionListener="#{reportesRequest.todosUsuarios()}" target="_new" class="btn btn-primary">
+                                Reporte Usuarios
+                            </h:commandLink>
+                            
+                            <h:commandLink actionListener="#{reportesRequest.reporteActivos(parametroIN)}" target="_new" class="btn btn-success">
+                                Reporte usuarios activos
+                            </h:commandLink>
+                                                       
+                            <br></br>
+                            <br></br>
+                            <div style="overflow:auto;">
+                                <table id="datatable-buttons" class="table table-striped table-bordered table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Dirección</th>
+                                            <th>Correo electrónico</th>
+                                            <th>Género</th>
+                                            <th>Fecha de Nacimiento</th>
+                                            <th>Tipo de documento</th>
+                                            <th>Número de documento</th>
+                                            <th>Teléfono</th>
+                                            <th>Estado</th>
+                                            <th>Roles</th>
+                                            <th>Perfiles</th>
+                                            <th>Asignar Mascotas</th>
+
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                        <ui:repeat value="#{myFavoriteVetAdminView.leeListaUsuario()}" var="usu">
+                                            <tr>
+                                                <td>#{usu.USUNombre}</td>
+                                                <td>#{usu.USUApellido}</td>
+                                                <td>#{usu.USUDireccion}</td>
+                                                <td>#{usu.USUEmail}</td>
+                                                <td>#{usu.USUSexo}</td>
+                                                <td>
+                                                    <h:outputText value="#{usu.USUFechaNacimiento}" >
+                                                        <f:convertDateTime  pattern="MM/dd/yyyy" dateStyle="short"  />                                                    
+                                                    </h:outputText></td>
+                                                <td>#{usu.USUTipoDocumento}</td>
+                                                <td>#{usu.USUNumeroDocumento}</td>  
+                                                <td>#{usu.USUTelefono}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-#{usu.USUestado eq 'Inactivo'?'secundary':'info'} btn-sm m-b-10 m-l5" onclick="bloqueo('#{usu.USUNombre}', '#{usu.PKUSUIdUsuario}')">
+                                                        #{usu.USUestado}
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <ui:repeat value="#{usu.rolCollection}" var="misRoles">
+                                                        <i class="mdi mdi-star font-18 align-middle mr-2"></i><b>#{misRoles.ROLNombreRol}</b><br/>                                                                    
+                                                    </ui:repeat>
+                                                </td>
+                                                <td>
+                                                    <h:commandButton value="Perfiles" onclick="$('#exampleRoles').show();" class="btn btn-success">
+                                                        <f:ajax event="click" render="formularioRoles:modalRoles" listener="#{myFavoriteVetAdminView.calculaRoles(usu)}" ></f:ajax>                                                                      
+                                                    </h:commandButton>
+                                                    <!--                                                &nbsp;-->
+
+                                                </td>
+                                                <td>
+                                                    <h:commandButton value="Asignar mascota" onclick="$('#exampleMascotas').show();" class="btn btn-primary">
+                                                        <f:ajax event="click" render="formularioMascotas:modalMascotas" listener="#{myFavoriteVetAdminView.calculaMascotas(usu)}" ></f:ajax>
+                                                    </h:commandButton>
+                                                </td>
+
+
+                                            </tr> 
+                                        </ui:repeat>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </h:form>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" tabindex="-1" role="dialog"  id="exampleRoles">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Perfiles</h5>
+                            <button type="button" class="close" onclick="$('#exampleRoles').hide();" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <h:form id="formularioRoles">
+
+
+                                <h:panelGroup id="modalRoles">
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class="card-title">
+                                                <h4>Actuales</h4>
+                                            </div>
+                                            <div class="button-list">
+                                                <c:forEach items="#{myFavoriteVetAdminView.misRoles}" var="rol">
+                                                    <h:outputLabel >
+                                                        <button type="button" class="btn btn-success btn-flat btn-addon m-b-10 m-l-5"><i class="ti-minus"></i> #{rol.ROLNombreRol}</button>
+                                                        <f:ajax render="formularioRoles:modalRoles" event="click" listener="#{myFavoriteVetAdminView.removerRol(rol.PKROLIdRol)}"></f:ajax>
+                                                    </h:outputLabel>
+                                                </c:forEach>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br></br>
+                                    <div class="col-lg-12">
+
+                                        <div class="card">
+                                            <div class="card-title">
+                                                <h4>Disponibles</h4>
+                                            </div>
+                                            <div class="button-list">
+
+                                                <c:forEach items="#{myFavoriteVetAdminView.rolesDisponibles}" var="rol">
+
+                                                    <h:outputLabel >
+                                                        <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i class="ti-plus"></i> #{rol.ROLNombreRol}</button>
+                                                        <f:ajax render="formularioRoles:modalRoles" event="click" listener="#{myFavoriteVetAdminView.adicionarRol(rol.PKROLIdRol)}"></f:ajax>
+                                                    </h:outputLabel>
+
+                                                </c:forEach>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </h:panelGroup>
+                            </h:form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"  onclick="$('#exampleRoles').hide();">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal" tabindex="-1" role="dialog"  id="exampleMascotas">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Mascotas</h5>
+                            <button type="button" class="close" onclick="$('#exampleMascotas').hide();" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h:form id="formularioMascotas">
+                                <h:panelGroup id="modalMascotas">
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class="card-title">
+                                                <h4>Mascotas de este usuario</h4>
+                                            </div>
+                                            <div class="button-list">
+                                                <c:forEach items="#{myFavoriteVetAdminView.mascotas}" var="mascota">
+                                                    <h:outputLabel>
+                                                        <button type="button" class="btn btn-success btn-flat btn-addon m-b-10 m-l-5"><i class="ti-minus"></i> #{mascota.MASNombreMascota}</button>
+                                                        <f:ajax render="formularioMascotas:modalMascotas" event="click" listener="#{myFavoriteVetAdminView.removerMascota(mascota.PKMASIdMascota)}"></f:ajax>
+                                                    </h:outputLabel>
+                                                </c:forEach>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br></br>
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class="card-title">
+                                                <h4>Asignar mascota</h4>
+                                            </div>
+                                            <div class="button-list">
+                                                <c:forEach items="#{myFavoriteVetAdminView.mascotas2}" var="mascota">
+                                                    <h:outputLabel>
+                                                        <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i class="ti-plus"></i> #{mascota.MASNombreMascota}</button>
+                                                        <f:ajax render="formularioMascotas:modalMascotas" event="click" listener="#{myFavoriteVetAdminView.adicionarMascota(mascota.PKMASIdMascota)}"></f:ajax>
+                                                    </h:outputLabel>
+                                                </c:forEach>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </h:panelGroup>
+                            </h:form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"  onclick="$('#exampleMascotas').hide();">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <h:form>
+                <p:remoteCommand name="cambioEstado" actionListener="#{myFavoriteVetAdminView.cambiarEstado()}"></p:remoteCommand>
+            </h:form>
+
+
+
+            <script type="text/javascript" >
+
+                function bloqueo(nombre, pkUsuario) {
+                    swal({
+                        title: "Deseas cambiar el estado de  " + nombre + " ?",
+                        text: "Esta seguro ?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Si",
+                        cancelButtonText: "No",
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    cambioEstado([{name: 'usuPk', value: pkUsuario}]);
+                                    swal("Estado cambio !!", "Satisfactoriamente!!", "success");
+                                } else {
+                                    swal("Accion  !!", "Cancelada !!", "error");
+                                }
+                            });
+                }
+
+            </script>
+
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>
+

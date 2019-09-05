@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>My favorite vet</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content="Somos un sistema para las veterinarias" />
+        <meta name="keywords" content="veterinaria, my favorite vet, sistema veterinaria, vet, veterinaria en bogota" />
+        <meta name="author" content="my favorite vet" />
+        <link rel="shortcut icon" href="img/verde.png"/>
+        <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
+        <!-- Animate.css -->
+        <link rel="stylesheet" href="css/animate.css"/>
+        <!-- Icomoon Icon Fonts-->
+        <link rel="stylesheet" href="css/icomoon.css"/>
+        <!-- Simple Line Icons -->
+        <link rel="stylesheet" href="css/simple-line-icons.css"/>
+        <!-- Magnific Popup -->
+        <link rel="stylesheet" href="css/magnific-popup.css"/>
+        <!-- Bootstrap  -->
+        <link rel="stylesheet" href="css/bootstrap.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+        <link href="css/sweetalert.css" rel="stylesheet"/>
+        <script src="js/modernizr-2.6.2.min.js"></script>
+
+    </h:head>
+    <h:body>
+        <header role="banner" id="fh5co-header">
+            <div class="container">
+                <!-- <div class="row"> -->
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header">
+                        <!-- Mobile Toggle Menu Button -->
+                        <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+                        <a class="navbar-brand" href="#">
+                            <img src="img/verde.png" width="40" height="40" alt=""/>
+                        </a>
+                        <a class="navbar-brand" href="#">My favorite vet</a> 
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="#" data-nav-section="inicio"><span>Inicio</span></a></li>
+                            <li><a href="#" data-nav-section="blog"><span>Blog</span></a></li>
+                            <li><a href="#" data-nav-section="servicios"><span>Servicios</span></a></li>
+                            <li><a href="#" data-nav-section="equipo"><span>Equipo de trabajo</span></a></li>
+                            <li><a href="#" data-nav-section="contactenos"><span>Contactanos</span></a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- </div> -->
+            </div>
+        </header>
+
+        <section id="fh5co-home" data-section="inicio" style="background-image: url(img/Captura.PNG);" data-stellar-background-ratio="0.5">
+            <div class="gradient"></div>
+            <div class="container">
+                <div class="text-wrap">
+                    <div class="text-inner">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <h1 class="to-animate">Bienvenidos a My favorite vet</h1>
+                                <h2 class="to-animate">Velamos por la salud de las mascotas de nuestros clientes.</h2>
+                                <h3 class="to-animate" style="color: rgba(255, 255, 255, 0.8);">Puedes visitar nuestra pagina en ingles dando <a href="ingles.xhtml">Click aqui</a></h3>
+                                <br></br>
+                                <br></br>
+                                <p><a href="ingresar.xhtml" class="btn btn-primary">Ingresar</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slant"></div>
+        </section>
+
+        <section id="fh5co-intro">
+            <div class="container">
+                <div class="row row-bottom-padded-lg">
+                    <div class="fh5co-block to-animate" style="background-image: url(img/veterinario.jpg);">
+                        <div class="overlay-darker"></div>
+                        <div class="overlay"></div>
+                        <div class="fh5co-text">
+                            <i class="far fa-address-book fa-3x" style="color: #52d3aa;"></i>
+                            <h2>Quiénes somos</h2>
+                            <p>Nosotros somos My favorite vet (Mi veterinario favorito) una eps 
+                                especialmente creada para el cuidado de las mascotas, de todas 
+                                aquellas personas que aman y quieren un cuidado especial para ellas, 
+                                ademas de facilitar todos los procesos que se llevan a cabo en nuestras 
+                                veterinarias asociadas.</p>
+                            <!--                            <p><a href="#" class="btn btn-primary">Get In Touch</a></p>-->
+                        </div>
+                    </div>
+                    <div class="fh5co-block to-animate" style="background-image: url(img/medico.jpg);">
+                        <div class="overlay-darker"></div>
+                        <div class="overlay"></div>
+                        <div class="fh5co-text">
+                            <i class="fas fa-clipboard-list fa-3x" style="color: #52d3aa;"></i>
+                            <h2>Misión</h2>
+                            <p>Trabajamos todos los dias para la tranquilidad de nuestros clientes.
+                                <br/>  
+                                Implementando más servicios para el cuidado de tus mascotas.
+                                <br/>  
+                                Mejoramos nuestro servicio al cliente para mejorar tu experiencia.</p>
+                            <!--                            <p><a href="#" class="btn btn-primary">Click Me</a></p>-->
+                        </div>
+                    </div>
+                    <div class="fh5co-block to-animate" style="background-image: url(img/me.jpg);">
+                        <div class="overlay-darker"></div>
+                        <div class="overlay"></div>
+                        <div class="fh5co-text">
+                            <i class="fas fa-chart-line fa-3x" style="color: #52d3aa;"></i>
+                            <h2>Visión</h2>
+                            <p>My favorite vet será una eps a nivel nacional líder en la salud de todas las mascotas de nuestros clientes, orientados a la felicidad y tranquilidad de nuestros clientes y sus mascotas.</p>
+                            <!--                            <p><a href="#" class="btn btn-primary">Why Us?</a></p>-->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+
+        <section id="fh5co-testimonials" data-section="blog">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 section-heading text-center">
+                        <h2 class="to-animate">Blog</h2>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                                <h3>En esta seccion podras observar algunas noticias acerca del mundo de la salud animal.</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="box-testimony">
+                            <blockquote class="to-animate-2">
+                                <p>"Una campaña de inmunización animal sin precedentes busca proteger el ganado, del que viven dos de cada tres sursudaneses, y evitar los contagios a humanos en un país castigado por la guerra"</p>
+                            </blockquote>
+                            <div class="author to-animate">
+                                <p>
+                                    EL PAÍS <a href="https://elpais.com/elpais/2018/05/21/planeta_futuro/1526926003_944692.html" target="_blank">Leer noticia</a> <span class="subtext">Por: CARLOS LAORDEN</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="box-testimony">
+                            <blockquote class="to-animate-2">
+                                <p>"Es difícil entender a un gato, ese rey de la belleza y la inexpresividad que tiene sus propios códigos. Y a menudo son radicalmente diferentes de los de otros animales domésticos"</p>
+                            </blockquote>
+                            <div class="author to-animate">
+                                <p>
+                                    EL PAÍS <a href="https://elpais.com/elpais/2018/05/21/icon/1526895279_146282.html" target="_blank">Leer noticia</a> <span class="subtext">Por: GUILLERMO ALONSO</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="box-testimony">
+                            <blockquote class="to-animate-2">
+                                <p>"“Toda enfermedad arranca casi siempre por la parte emocional”, explica la médica veterinaria Laura Tafur, tras señalar que “cuando los animalitos tienen bajas las defensas por estrés o depresión, cualquier patógeno que esté en el aire, en la guardería o en algún compañero de caminata, se puede aprovechar para causarles alguna enfermedad”."</p>
+                            </blockquote>
+                            <div class="author to-animate">
+                                <p>
+                                    EL TIEMPO <a href="http://www.eltiempo.com/vida/medio-ambiente/las-enfermedades-que-mas-afectan-a-los-perros-245912" target="_blank">Leer noticia</a> <span class="subtext">Por: TATIANA MUNÉVAR B.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+
+        <section id="fh5co-services" data-section="servicios">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 section-heading text-left">
+                        <h2 class=" left-border to-animate">Servicios</h2>
+                        <div class="row">
+                            <div class="col-md-8 subtext to-animate">
+                                <h3>Nuestro sistema ofrece muchas ventajas para todas las veterinarias. Acontinuacion te diremos algunas de ellas</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 fh5co-service to-animate">
+                        <i class="far fa-lightbulb fa-3x"></i>
+                        <br></br>
+                        <br></br>
+                        <h3>Facilidad de uso</h3>
+                        <p>Nuestro sistema de informacion, esta pensado para usarse de una manera facil y amigable, para que asi nuestros usuarios le puedan sacar el mayor provecho.</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 fh5co-service to-animate">
+                        <i class="fas fa-pencil-ruler fa-3x"></i>
+                        <br></br>
+                        <br></br>
+                        <h3>Personalizacion</h3>
+                        <p>Si necesitas muchas mas funcionalidades, nuestro sistema al ser modular nos permitira adaptarnos a todas las peticiones que tengas.</p>
+                    </div>
+
+                    <div class="clearfix visible-sm-block"></div>
+
+                    <div class="col-md-6 col-sm-6 fh5co-service to-animate">
+                        <i class="fas fa-chart-line fa-3x"></i>
+                        <br></br>
+                        <br></br>
+                        <h3>Progreso</h3>
+                        <p>Con nuestro sistema podras trazar el progreso que tenga tu veterinaria en los apectos que consideres mas importantes.</p>
+                    </div>
+                    <!--                    <div class="col-md-6 col-sm-6 fh5co-service to-animate">
+                                            <i class="fas fa-pencil-ruler fa-3x"></i>
+                                            <br></br>
+                                            <br></br>
+                                            <h3>CMS &amp; eCommerce</h3>
+                                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
+                                        </div>-->
+
+                </div>
+            </div>
+        </section>
+
+        <section id="fh5co-about" data-section="equipo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 section-heading text-center">
+                        <h2 class="to-animate">Equipo de trabajo</h2>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                                <h3>Estos somos nosotros, quienes creamos este sistema de informacion, My favorite vet</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="fh5co-person text-center to-animate">
+                            <figure><img src="img/user.png" alt="Image"/></figure>
+                            <h3>Andrea Lugo</h3>
+                            <span class="fh5co-position">Diseñadora</span>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
+                            <ul class="social social-circle">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fh5co-person text-center to-animate">
+                            <figure><img src="img/user.png" alt="Image"/></figure>
+                            <h3>Alexander Suarez</h3>
+                            <span class="fh5co-position">Diseñador</span>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
+                            <ul class="social social-circle">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fh5co-person text-center to-animate">
+                            <figure><img src="img/user.png" alt="Image"/></figure>
+                            <h3>Diego Burgos</h3>
+                            <span class="fh5co-position">Diseñador</span>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
+                            <ul class="social social-circle">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="fh5co-contact" data-section="contactenos">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 section-heading text-center">
+                        <h2 class="to-animate">Contactanos</h2>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                                <h3>Si necesitas un sistema para tu veterinaria no dudes en contactarnos. Aqui te dejamos nuestros datos de contacto.</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-bottom-padded-md">
+                    <div class="col-md-6 to-animate">
+                        <h3>Datos de contacto:</h3>
+                        <ul class="fh5co-contact-info">
+                            <li><i class="fas fa-at"></i>promyfavoritevet@gmail.com</li>
+                            <li><i class="fas fa-globe"></i> <a href="#">myfavoritevet.com</a></li>
+                        </ul>
+                    </div>
+
+                    <form class="col-md-6 to-animate">
+                        <h3>Formulario de contacto</h3>
+                        <div class="form-group ">
+                            <label for="name" class="sr-only">Nombre</label>
+                            <input id="name" class="form-control" required="true" placeholder="Nombre" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label for="email" class="sr-only">Correo</label>
+                            <input id="email" class="form-control" required="true" placeholder="Correo" type="email"/>
+                        </div>
+                        <div class="form-group ">
+                            <label for="phone" class="sr-only">Telefono</label>
+                            <input id="phone" class="form-control" required="true" placeholder="Telefono" type="text"/>
+                        </div>
+                        <div class="form-group ">
+                            <label for="message" class="sr-only">Tu mensaje:</label>
+                            <textarea name="" id="message" cols="30" rows="5" class="form-control" required="true" placeholder="Mensaje"></textarea>
+                        </div>
+                        <div class="form-group ">
+                            <input class="btn btn-primary btn-lg" value="Enviar" type="submit"/>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer id="footer" role="contentinfo">
+            <a href="#" class="gotop js-gotop">Ir<i class="fas fa-angle-up">Arriba</i></a>
+            <br></br>
+            <br></br>
+            <div class="container">
+                <div class="">
+                    <div class="col-md-12 text-center">
+                        <p> © My favorite vet. Todos los derechos reservados. </p>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <ul class="social social-circle">
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="js/jquery.min.js"></script>
+        <!-- jQuery Easing -->
+        <script src="js/jquery.easing.1.3.js"></script>
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- Waypoints -->
+        <script src="js/jquery.waypoints.min.js"></script>
+        <!-- Stellar Parallax -->
+        <script src="js/jquery.stellar.min.js"></script>
+        <!-- Counter -->
+        <script src="js/jquery.countTo.js"></script>
+        <!-- Magnific Popup -->
+        <script src="js/jquery.magnific-popup.min.js"></script>
+        <script src="js/magnific-popup-options.js"></script>
+        <!-- Google Map -->
+
+
+        <!-- For demo purposes only styleswitcher ( You may delete this anytime ) -->
+
+        <!-- End demo purposes only -->
+
+        <!-- Main JS (Do not remove) -->
+        <script src="js/main.js"></script>
+    </h:body>
+</html>
+

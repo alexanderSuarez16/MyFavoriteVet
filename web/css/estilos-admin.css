@@ -1,0 +1,35 @@
+body{
+	margin: 0;
+	padding: 0;
+
+}
+
+
+iframe {
+	
+	width: 99%;
+	height:620px;
+	margin-left:1px;
+
+		background-color: rgba(0, 131, 166, 1);
+
+}
+/*boton de cerrar sesion*/
+
+
+#carrusel{
+	height: 600px;
+}
+
+
+#quienes{
+	height: 600px;
+	background-color: rgba(0, 131, 166, 1);
+}
+
+
+#copy{
+	text-align: center;
+background-color: rgba(0, 131, 166, 1);
+
+}

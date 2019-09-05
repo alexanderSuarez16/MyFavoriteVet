@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:head>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{myfavoriteSession.permission()}"/>
+        </f:metadata>
+        <title>Veterinario MyFavoriteVet</title>
+    </h:head>
+
+    <ui:composition template="../templates/diseño.xhtml">
+        <ui:param name="titulo" value="Veterinario" />
+        <ui:param name="nombreUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} #{myfavoriteSession.usuLogin.USUApellido}" />
+        <ui:param name="nombresUsuario" value="#{myfavoriteSession.usuLogin.USUNombre} "/>
+
+        <ui:define name="navSide">
+            <div class="profile clearfix">
+                <div class="profile_pic">
+                    <img src="../img/user.png" alt="..." class="img-circle profile_img"></img>
+                </div>
+                <div class="profile_info">
+                    <span>Hola,</span>
+                    <h2>#{nombresUsuario}</h2>
+                </div>
+            </div>
+            <!-- /Aqui termina la foto del navSide-->
+            <br/>           
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" >
+                <div class="menu_section" >               
+                    <ul class="nav side-menu" >
+
+                        <li><a><i class="fa fa-users"></i> Roles <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <c:forEach items="#{myfavoriteSession.usuLogin.rolCollection}" var="roles">
+                                    <li>
+                                        <li><a href="../#{roles.ROLNombreRol}/index.xhtml?faces-redirect=true">#{roles.ROLNombreRol}</a></li>
+
+                                    </li>
+                                </c:forEach>                                
+                            </ul>
+                        </li> 
+                        <br></br>
+
+                        <li><a href="index.xhtml" ><i class="fa fa-home"></i>Inicio <span></span></a></li>
+
+                        <li><a><i class="fa fa-user"></i> Perfil <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <!--                                        <li><a href="miperfil.xhtml">Ver perfil</a></li>-->
+                                <li><a href="../Veterinario/editarperfil.xhtml">Editar Perfil</a></li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-medkit"></i> Citas <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="../Veterinario/crearcita.xhtml">Crear citas</a></li>
+                                <li><a href="../Veterinario/citascreadas.xhtml">Citas de hoy</a></li>
+                                <li><a href="../Veterinario/citasRechazadas.xhtml">Agendar citas rechazadas</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a><i class="fa fa-history"></i> Historia clinica <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="../Veterinario/crearhistoriaclinica.xhtml">Nueva historia clinica</a></li>
+                                <li><a href="../Veterinario/historiasclinicas.xhtml">Historias clinicas creadas</a></li>
+                            </ul>
+                        </li>
+
+                        <!--                                <li><a><i class="fa fa-history"></i> Recetas medicas <span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="../Veterinario/crearReceta.xhtml">Crear nueva receta</a></li>
+                                                            </ul>
+                                                        </li>-->
+
+                        <li><a><i class="fa fa-history"></i> Medicamentos <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="../Veterinario/registrarMedicamento.xhtml">Registrar medicamento</a></li>
+                                <li><a href="../Veterinario/verMedicamentos.xhtml">Ver medicamentos</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a><i class="fa fa-paw"></i>Mascotas <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="../Veterinario/consultarMascotas.xhtml"> Mascotas</a></li>
+                            </ul>
+                        </li>
+                        <!--                                <li><a><i class="fa fa-clone"></i> Disponibilidad <span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="../Veterinario/creardisponibilidad.xhtml">Crear disponibilidad</a></li>
+                                                            </ul>
+                                                        </li>-->
+                    </ul>
+
+                    <!--Aqui va el footer-->
+
+                    <!--Aqui termina el footer-->
+
+                </div>
+            </div>
+            <!--aqui termina el slider bar menu-->
+
+        </ui:define>
+
+        <ui:define name="contenido">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="x_title">
+                    <h2>Registrar medicamento</h2>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="container-fluid" style="padding: 50px">
+                    <div class="col-12 row container" >
+                        <h:form class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <h:outputLabel value="¿El medicamento es donado??" for="MED_Medicamento_Donado" class="control-label col-md-3 col-sm-3 col-xs-12" />
+                                <div class="col-md-6 col-sm-6 col-xs-12">                                    
+                                    <h:selectOneMenu id="MED_Medicamento_Donado" class="form-control" required="true" value="#{myFavoriteVetAdminView.medicamentoIn.MEDMedicamentoDonado}">
+                                        <f:selectItem itemValue="Si" itemLabel="Si"/>
+                                        <f:selectItem itemValue="No" itemLabel="No"/>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Nombre medicamento" for="MED_Nombre" class="control-label col-md-3 col-sm-3 col-xs-12" />
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="MED_Nombre" jsf:value="#{myFavoriteVetAdminView.medicamentoIn.MEDNombre}" title="MASNombreMascota" required="true" class="form-control" onkeypress="return soloLetras(event)"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Fecha de vencimiento" for="MED_Fecha_Vencimiento" class="control-label col-md-3 col-sm-3 col-xs-12" />
+                                <div class="col-md-6 col-sm-6 col-xs-12">                                         
+                                    <h:inputText  id="MED_Fecha_Vencimiento" pt:type="date"  value="#{myFavoriteVetAdminView.fechaIn}" title="MED_Fecha_Vencimiento" required="true" requiredMessage="Por favor ingrese la fecha de vencimiento" class="form-control">
+
+                                    </h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Tipo medicamento:" for="MED_Tipo" class="control-label col-md-3 col-sm-3 col-xs-12" />
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:selectOneMenu id="MED_Tipo" class="form-control" required="true" value="#{myFavoriteVetAdminView.medicamentoIn.MEDTipo}">
+                                        <f:selectItem itemValue="Pastilla" itemLabel="Pastilla"/>
+                                        <f:selectItem itemValue="Oral" itemLabel="Oral"/>
+                                        <f:selectItem itemValue="Inyectable" itemLabel="Inyectable"/>                                        
+                                    </h:selectOneMenu>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Cantidad del medicamento(En miligramos)" for="MED_Cantidad" class="control-label col-md-3 col-sm-3 col-xs-12" />
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="MED_Cantidad" jsf:value="#{myFavoriteVetAdminView.medicamentoIn.MEDCantidad}" title="MED_Cantidad" required="true" class="form-control" onkeypress="return checkIt(event)"/>
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <h:commandButton  action="#{myFavoriteVetAdminView.registrarMedicamento()}" class="btn btn-success" value="Registrar" ></h:commandButton>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
